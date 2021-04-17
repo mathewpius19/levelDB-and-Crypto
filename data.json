@@ -1,0 +1,4 @@
+[{"type":"put","key":"user!substack","value":{"bio":"beep boop"}},
+    {"type":"put","key":"user!maxogden","value":{"bio":"cats."}},
+    {"type":"put","key":"post!substack!2015-01-04 11:45","value":"cool beans"},
+    {"type":"put","key":"post!maxogden!2015-01-03 17:33","value":"soup."}]

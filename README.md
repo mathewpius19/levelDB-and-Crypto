@@ -64,3 +64,25 @@ db.batch ([
  *opts.limit = maximum number of results
  
  *opts.reverse = higher keys before lower keys
+
+# Libraries that can be uses with LevelDB
+
+* SUBLEVELDOWN(npm install subleveldown)
+
+sublevel down lets you organize your key space into sublevels. This allows us to create nested sub-databases with subleveldowns.
+
+eg-----> var subDB = sublevel("nameOfDB", "sublevelName")
+
+* LEVEL-LIVEFEED(npm install level-livefeed)
+
+subscribe to a live feed of changes to the database.
+
+* BROWSERIFY
+
+Can fetch data from db to display on broswer
+(check browser.js in browser dir to see code)
+
+# WHAT TO STORE AND WHAT NOT TO STORE IN LEVELDB
+
+* best for tiny documents
+* documents can point at binary data by hash

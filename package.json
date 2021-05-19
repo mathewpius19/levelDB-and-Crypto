@@ -9,7 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chloride": "^2.4.1",
     "content-addressable-blob-store": "^5.1.0",
+    "hyperlog": "^4.12.1",
+    "hyperlog-index": "^5.2.2",
     "level": "^6.0.1",
     "level-livefeed": "^0.2.0",
     "leveldown": "^6.0.0",

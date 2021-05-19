@@ -86,3 +86,88 @@ Can fetch data from db to display on broswer
 
 * best for tiny documents
 * documents can point at binary data by hash
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+# CRYPTOGRAPHY
+
+# Hashes
+
+``` js
+var createHash = require("crypto").createHash
+var createHash = require("createHash")
+var stream = createHash (algorithm)
+```
+algorithms:
+
+* shal
+* sha256
+* sha512
+* md5
+
+# If we want to develop a method to keep a secret message that no advarsaries can read, there are couple of ways we can use:
+
+# Symmetric Ciphers :
+
+* requires a shared secret (like password)
+
+# asymmetric cryptography:
+* public/private key pair
+* encrypt with someones public key after which they can decrypt with their private key to see the message.
+
+# Random Number Generator
+
+secure entropy needed for generating keys, nonces(random numbers):
+``` js
+window.cryto.getRandomValues(new Uint8Array(8))
+```
+
+If your RNG is bad, your crypto is also bad.
+
+# Using sodium to generate keypairs
+
+```js 
+var sodium = require("chloride");
+console.log(sodium.crypto_sign_keypair())
+console.log(sodium.crypto_box_keypair())
+```
+
+# combined vs detached 
+* combined mode : output contains the orginal message + signature
+* detached mode : output contains only the signature
+
+# sodium authenticated with encryption combined 
+symmetric cipher with message authentication code (MAC) to prevent tampering
+
+```js
+var msg = crypto.randomBytes(16)
+var nonce = crypto.randomBytes(24)
+var key = crypto.randomBytes(32)
+var cipherText = sodium.crypto_secretbox_easy(msg,nonce,key) // u encrypt the message here and send it.
+var clearText = sodium.crypto_secretbox_open_easy(cipherText, nonce, key) // u get back the msg here after decryption 
+```
+
+# merkle DAGS
+
+hash very document.
+point to every other document by storing the hash in the doc itself
+
+eg: git, ipfs
+
+Advantages/security proofs of merkle DAGS:
+* tamper-proof - changing a single doc changes the hash that points at it.
+* Docs can be authenticated with signing.
+
+# Kappa Architecture
+enterprise architecture
+* immutable, append only logs are how data is stored.
+* if you want to make a change of a previously entered doc, add a new one mentioning the changes.
+* good for p2p.
+ 
+ * Replicate log.db and log2.db into one by using dupsh on linux command line.
+   > dupsh 'node duplicate.js log.db' 'node duplicate.js log2.db'
+
+
+# hyperlog-index
+
+build materialized views on top of a hyperlog 
